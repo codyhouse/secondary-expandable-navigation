@@ -59,6 +59,7 @@ Main components
   position: relative;
   background-color: #f5f4e9;
   z-index: 2;
+  padding-top: 50px;
   /* Force Hardware Acceleration in WebKit */
   -webkit-transform: translateZ(0);
   -webkit-backface-visibility: hidden;
@@ -77,12 +78,40 @@ Main components
   -o-transform: translateX(-260px);
   transform: translateX(-260px);
 }
+@media only screen and (min-width: 768px) {
+  .cd-main-content {
+    padding-top: 70px;
+  }
+}
 
 header {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 50px;
   width: 100%;
   background: #4e6361;
+  z-index: 3;
+  /* Force Hardware Acceleration in WebKit */
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+header.lateral-menu-is-open {
+  /* translate to show the lateral menu */
+  -webkit-transform: translateX(-260px);
+  -moz-transform: translateX(-260px);
+  -ms-transform: translateX(-260px);
+  -o-transform: translateX(-260px);
+  transform: translateX(-260px);
+}
+header.is-fixed {
+  position: fixed;
 }
 @media only screen and (min-width: 768px) {
   header {
@@ -240,8 +269,6 @@ header {
   width: 260px;
   background-color: #242e30;
   overflow-y: auto;
-  /* smooth the scrolling on touch devices - webkit browsers */
-  -webkit-overflow-scrolling: touch;
   /* Force Hardware Acceleration in WebKit */
   -webkit-transform: translateZ(0);
   -webkit-backface-visibility: hidden;
@@ -289,6 +316,8 @@ header {
   -ms-transform: translateX(0);
   -o-transform: translateX(0);
   transform: translateX(0);
+  /* smooth the scrolling on touch devices - webkit browsers */
+  -webkit-overflow-scrolling: touch;
 }
 
 /* style menu items which have a submenu  */

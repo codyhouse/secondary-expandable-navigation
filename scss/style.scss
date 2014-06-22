@@ -69,6 +69,9 @@ Main components
 	position: relative;
 	background-color: $background;
 	z-index: $content-zindex;
+	
+	//we assign a top padding since the header is in position absolute or fixed
+	padding-top: $header-S;
 
 	/* Force Hardware Acceleration in WebKit */
 	-webkit-transform: translateZ(0);
@@ -81,13 +84,37 @@ Main components
 		/* translate to show the lateral menu - all content needs to be put in the .cd-main-content to translate*/
 		@include transform(translateX(-260px));
 	}
+
+	@include MQ(M) {
+		padding-top: $header-M;
+	}
 }
 
 header {
-	position: relative;
+	position: absolute;
+	top: 0;
+	left: 0;
 	height: $header-S;
 	width: 100%;
 	background: $color-1;
+	z-index: $header-zindex;
+
+	/* Force Hardware Acceleration in WebKit */
+	-webkit-transform: translateZ(0);
+	-webkit-backface-visibility: hidden;
+
+	@include transition-property(transform);
+	@include transition-duration(.4s);
+
+	&.lateral-menu-is-open {
+		/* translate to show the lateral menu */
+		@include transform(translateX(-260px));
+	}
+	
+	//assign this class to the header if you want a fixed navigation
+	&.is-fixed {
+		position: fixed;
+	}
 
 	@include MQ(M) {
 		height: $header-M;
@@ -247,9 +274,6 @@ header {
 
 	overflow-y: auto;
 
-	/* smooth the scrolling on touch devices - webkit browsers */
-	-webkit-overflow-scrolling: touch;
-
 	/* Force Hardware Acceleration in WebKit */
 	-webkit-transform: translateZ(0);
 	-webkit-backface-visibility: hidden;
@@ -293,6 +317,9 @@ header {
 
 	&.lateral-menu-is-open {
 		@include transform(translateX(0));
+
+		/* smooth the scrolling on touch devices - webkit browsers */
+		-webkit-overflow-scrolling: touch;
 	}
 }
 
