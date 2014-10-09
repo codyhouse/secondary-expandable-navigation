@@ -209,9 +209,6 @@ header {
 			position: absolute;
 			background-color: inherit;
 			left: 0;
-			/* Force Hardware Acceleration in WebKit */
-			-webkit-transform: translateZ(0);
-			-webkit-backface-visibility: hidden;
 		}
 		
 		&::before {
